@@ -1,0 +1,23 @@
+{
+  "name": "moodtracker",
+  "version": "1.0.0",
+  "description": "webapp for collecting mood statistics",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adrian154/moodtracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adrian154/moodtracker/issues"
+  },
+  "homepage": "https://github.com/adrian154/moodtracker#readme",
+  "dependencies": {
+    "better-sqlite3": "^9.0.0",
+    "express": "^4.18.2"
+  }
+}

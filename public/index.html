@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Mood Tracker</title>
+        <style>
+            body {
+                font-family: sans-serif;
+                max-width: 30em;
+                margin: auto;
+                padding: 1em;
+            }
+
+            button {
+                width: 100%;
+                height: 3em;
+                font-size: 1em;
+                margin-top: 1em;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            #okay { border: 1px solid rgb(32,227,224); background-color: rgba(32,227,224,25%); } 
+            #happy { border: 1px solid rgb(32,227,94); background-color: rgba(32,227,94,25%); }
+            #sad { border: 1px solid rgb(32,78,227); background-color: rgba(32,78,227,25%); }
+            #exhausted { border: 1px solid rgb(168,168,168); background-color: rgba(168,168,168,25%); }
+            #excited { border: 1px solid rgb(227,227,32); background-color: rgba(227,227,32,25%); }
+            #angry { border: 1px solid rgb(227,32,32); background-color: rgba(227,32,32,25%); }
+            #anxious{ border: 1px solid rgb(107,32,227); background-color: rgba(107,32,227,25%); }
+        </style>
+    </head>
+    <body>
+        <p>How are you feeling?</p>
+        <button id="okay">Okay &#x1F642;</button>
+        <button id="happy">Happy &#x1F604;</button>
+        <button id="sad">Sad &#x2639;&#xFE0F;</button>
+        <button id="exhausted">Exhausted &#x1F62E;&#x200D;&#x1F4A8;</button>
+        <button id="excited">Excited &#x1F62E;</button>
+        <button id="angry">Angry &#x1F621;</button>
+        <button id="anxious">Anxious &#x1F616;</button>
+        <script>
+            for(const emotion of ["okay", "happy", "sad", "exhausted", "excited", "angry", "anxious"]) {
+                document.getElementById(emotion).addEventListener("click", () => {
+                    document.body.classList.add("working");
+                    fetch(`/report?emotion=${emotion}`, {method: "POST"})
+                        .then(resp => {
+                            if(!resp.ok) {
+                                alert(`Request failed: HTTP ${resp.status} ${resp.statusText}`);
+                            } else {
+                                alert("Recorded!");
+                            }
+                        })
+                        .catch(err => alert(`Request failed: ${err}`));
+                });
+            }
+        </script>
+    </body>
+</html>
